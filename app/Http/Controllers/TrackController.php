@@ -52,12 +52,14 @@ class TrackController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'artist' => ['required', 'string', 'max:255'],
             'url' => ['required', 'url', new PlayerUrl()],
+            'category_id' => ['required', 'exists:categories,id'],
         ]);
 
         DB::beginTransaction();
 
         // Set track title, artist and url
         $track = new Track($validated);
+        $track->category_id = $validated['category_id'];
 
         // Set track's user + week
         $track->user()->associate($request->user());

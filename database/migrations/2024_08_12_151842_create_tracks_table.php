@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('player_track_id')->nullable();
             $table->string('player_thumbnail_url')->nullable();
             // Il faut ajouter un id category
-            $table->foreignIdFor(Category::class)->constrained('categories')->onDelete('set null');
+            $table->foreignIdFor(Category::class)->nullable()->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

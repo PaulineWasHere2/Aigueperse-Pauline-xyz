@@ -1,5 +1,5 @@
 <?php
-
+// cmd : php artisan db:seed --class=CategorySeeder
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;

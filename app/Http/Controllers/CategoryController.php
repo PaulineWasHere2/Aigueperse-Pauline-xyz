@@ -21,8 +21,13 @@ class CategoryController extends Controller
     /**
      * Show the form to create a new category.
      */
-    public function show(): View
+    public function show(Category $category): View
     {
-        return view('app.categories.show');
+        $tracks = $category->tracks()->with('user')->withCount('likes')->paginate();
+
+        return view('app.categories.show', [
+            'category' => $category,
+            'tracks' => $tracks,
+        ]);
     }
 }
